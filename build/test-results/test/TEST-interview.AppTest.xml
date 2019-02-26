@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="interview.AppTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-02-26T03:50:03" hostname="Telus-MBP.fios-router.home" time="0.069">
+  <properties/>
+  <testcase name="testAllRoutes" classname="interview.AppTest" time="0.002"/>
+  <testcase name="testUserRoutes" classname="interview.AppTest" time="0.065"/>
+  <testcase name="testUniqueRoutes" classname="interview.AppTest" time="0.001"/>
+  <testcase name="testUserServiceRoutes" classname="interview.AppTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
