@@ -3,13 +3,16 @@
  */
 package interview;
 
-import java.util.Arrays;
-
 public class App {
 
     public static void main(String[] args) {
 
-        Routes routes = new Routes();
+        ServiceManager serviceManager = new ServiceManager.Builder()
+                .withService("Strava", "interview.StravaService")
+                .withService("RWGPS", "interview.RWGPSService")
+                .withService("Komoot", "interview.KomootService")
+                .build();
+        Routes routes = new Routes(serviceManager);
         Routes.printRoutes(routes.getAllRoutes());
         Routes.printRoutes(routes.getUniqueRoutes());
         Routes.printRoutes(routes.getUserRoutes("42"));

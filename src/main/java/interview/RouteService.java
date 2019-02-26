@@ -19,4 +19,10 @@ public interface RouteService {
      * @return list of all routes for the use
      */
     List<String> getUserRoutes(String userId);
+    /**
+     * Return this services id
+     *
+     * @return id
+     */
+    String getId();
 }

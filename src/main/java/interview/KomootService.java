@@ -9,6 +9,15 @@ import java.util.List;
  */
 public class KomootService implements RouteService {
     private String[] routes = new String[]{"SRT", "Welsh Mountain", "Oaks to Philly"};
+    private String id;
+
+    public KomootService(String id){
+        this.id = id;
+    }
+
+    @Override
+    public String getId(){ return id;}
+
 
     @Override
     public List<String> getRoutes() {

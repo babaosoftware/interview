@@ -11,51 +11,44 @@ import java.util.concurrent.Flow;
  */
 public class Routes {
 
-    RouteService stravaService;
-    RouteService rwgpsService;
-    RouteService komootService;
-    public Routes(){
-        stravaService = new StravaService();
-        rwgpsService = new RWGPSService();
-        komootService = new KomootService();
+    ServiceManager serviceManager;
+    public Routes(ServiceManager serviceManager){
+        this.serviceManager = serviceManager;
     }
 
     public List<String> getAllRoutes(){
-        List<String> routes = new ArrayList<>();
-        routes.addAll(stravaService.getRoutes());
-        routes.addAll(rwgpsService.getRoutes());
-        routes.addAll(komootService.getRoutes());
-        return routes;
+        List<String> allRoutes = new ArrayList<>();
+        List<RouteService> routes = serviceManager.getServices();
+        for (RouteService service: routes)
+            allRoutes.addAll(service.getRoutes());
+        return allRoutes;
     }
 
     public List<String> getUniqueRoutes(){
         Set<String> uniqueRoutes = new HashSet<>();
-        uniqueRoutes.addAll(stravaService.getRoutes());
-        uniqueRoutes.addAll(rwgpsService.getRoutes());
-        uniqueRoutes.addAll(komootService.getRoutes());
-        List<String> routes = new ArrayList<>();
-        routes.addAll(uniqueRoutes);
-        return routes;
+        List<RouteService> routes = serviceManager.getServices();
+        for (RouteService service: routes)
+            uniqueRoutes.addAll(service.getRoutes());
+        List<String> allRoutes = new ArrayList<>();
+        allRoutes.addAll(uniqueRoutes);
+        return allRoutes;
     }
     public List<String> getUserRoutes(String userId){
-        List<String> routes = new ArrayList<>();
-        routes.addAll(stravaService.getUserRoutes(userId));
-        routes.addAll(rwgpsService.getUserRoutes(userId));
-        routes.addAll(komootService.getUserRoutes(userId));
-        return routes;
+        List<String> allRoutes = new ArrayList<>();
+        List<RouteService> routes = serviceManager.getServices();
+        for (RouteService service: routes)
+            allRoutes.addAll(service.getUserRoutes(userId));
+        return allRoutes;
     }
 
     public List<String> getUserRoutesByService(String userId, String[] services){
-        List<String> routes = new ArrayList<>();
-        for (String service: services){
-            switch (service){
-                case "Strava": routes.addAll(stravaService.getUserRoutes(userId)); break;
-                case "Komoot": routes.addAll(komootService.getUserRoutes(userId)); break;
-                case "RWGPS": routes.addAll(rwgpsService.getUserRoutes(userId)); break;
-                default: break;
-            }
+        List<String> allRoutes = new ArrayList<>();
+        for (String serviceId: services){
+            RouteService routeService = serviceManager.getService(serviceId);
+            if (null != routeService)
+                allRoutes.addAll(routeService.getUserRoutes(userId));
         }
-        return routes;
+        return allRoutes;
     }
 
     public static void printRoutes(List<String> routes){

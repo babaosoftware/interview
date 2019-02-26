@@ -9,6 +9,15 @@ import java.util.List;
  */
 public class RWGPSService implements RouteService {
     private String[] routes = new String[]{"CVT", "Perkiomen", "Welsh Mountain"};
+    private String id;
+
+    public RWGPSService(String id){
+        this.id = id;
+    }
+
+    @Override
+    public String getId(){ return id;}
+
 
     @Override
     public List<String> getRoutes() {

@@ -10,6 +10,14 @@ import java.util.List;
 public class StravaService implements RouteService {
 
     private String[] routes = new String[]{"SRT", "CVT", "Perkiomen"};
+    private String id;
+
+    public StravaService(String id){
+        this.id = id;
+    }
+
+    @Override
+    public String getId(){ return id;}
 
     @Override
     public List<String> getRoutes() {

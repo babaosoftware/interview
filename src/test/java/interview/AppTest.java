@@ -20,10 +20,15 @@ public class AppTest {
     static String[] user42StravaKomootRoutes;
 
     @BeforeClass public static void init(){
-        routes = new Routes();
-        allRoutes = new String[]{"SRT", "CVT", "Perkiomen", "CVT", "Perkiomen", "Welsh Mountain", "SRT", "Welsh Mountain", "Oaks to Philly"};
+        ServiceManager serviceManager = new ServiceManager.Builder()
+                .withService("Strava", "interview.StravaService")
+                .withService("RWGPS", "interview.RWGPSService")
+                .withService("Komoot", "interview.KomootService")
+                .build();
+        routes = new Routes(serviceManager);
+        allRoutes = new String[]{"SRT", "CVT", "Perkiomen", "SRT", "Welsh Mountain", "Oaks to Philly", "CVT", "Perkiomen", "Welsh Mountain"};
         uniqueRoutes = new String[]{"CVT", "Perkiomen", "SRT", "Welsh Mountain", "Oaks to Philly"};
-        user42Routes = new String[]{"42SRT", "42CVT", "42Perkiomen", "CVT42", "Perkiomen42", "Welsh Mountain42", "42SRT42", "42Welsh Mountain42", "42Oaks to Philly42"};
+        user42Routes = new String[]{"42SRT", "42CVT", "42Perkiomen", "42SRT42", "42Welsh Mountain42", "42Oaks to Philly42", "CVT42", "Perkiomen42", "Welsh Mountain42"};
         user42StravaKomootRoutes = new String[]{"42SRT", "42CVT", "42Perkiomen", "42SRT42", "42Welsh Mountain42", "42Oaks to Philly42"};
     }
 
