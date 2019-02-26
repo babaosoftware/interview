@@ -13,10 +13,10 @@ public class App {
                 .withService("Komoot", "interview.KomootService")
                 .build();
         Routes routes = new Routes(serviceManager);
-        Routes.printRoutes(routes.getAllRoutes());
-        Routes.printRoutes(routes.getUniqueRoutes());
-        Routes.printRoutes(routes.getUserRoutes("42"));
+        Routes.printRoutes("All routes", routes.getAllRoutes());
+        Routes.printRoutes("Unique routes", routes.getUniqueRoutes());
+        Routes.printRoutes("For user 42", routes.getUserRoutes("42"));
         String[] services = new String[]{"Strava", "Komoot"};
-        Routes.printRoutes(routes.getUserRoutesByService("42", services ));
+        Routes.printRoutes("For user 42 services [\"Strava\", \"Komoot\"]", routes.getUserRoutesByService("42", services ));
     }
 }

@@ -51,8 +51,8 @@ public class Routes {
         return allRoutes;
     }
 
-    public static void printRoutes(List<String> routes){
-        System.out.print("[");
+    public static void printRoutes(String prefix, List<String> routes){
+        System.out.print(prefix + ": [");
         boolean bFirst = true;
         for (String route: routes) {
             if (!bFirst)
