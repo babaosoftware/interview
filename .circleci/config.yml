@@ -13,4 +13,4 @@ jobs:
 
       - run:
           name: Test
-          command: echo "Not implemented" && exit 1
+          command: ./gradlew clean test
