@@ -9,7 +9,7 @@ jobs:
 
       - run:
           name: Build
-          command: cat sampleoutput.txt
+          command: ./gradlew run
 
       - run:
           name: Test
